@@ -13,7 +13,7 @@
 	pre {white-space: pre-wrap; word-wrap: break-word;}
 	a{color: var(--link-color);}
 	#body{margin: auto; width: 60%;  padding: 10px;}
-	#title_1{font-size: 4em; color: var(--titlecolor);}
+	#title_1{font-size: 5.5em; color: var(--titlecolor);}
 	#title_2{font-size: 2em;}
 	#title_3{font-size: 1em; text-decoration:underline;}
 	#title_4{font-size: 0.5em;}
@@ -54,7 +54,7 @@ technical discription:In this project sensors are used to collect a variety of i
 
 	-go to <a href="https://my.vultr.com/">https://my.vultr.com/</a> and make an account and connect your bank information.
 	-got to the products page.
-	-deploy a new server ->  Cloud compute > Regular Performance > Amsterdam > Debian 11x64 > hostname
+	-deploy a new server ->  Cloud compute > Regular Performance > Amsterdam > Debian 11x64 > enable Virtual Private Clouds & Enable IPv6 > hostname
 
 <code id="title_3">1.2 link your servers ip and ipv6 adresses to a domain name.</code>
 	-make a domain on <a href="https://www.namecheap.com/">https://www.namecheap.com/</a>
@@ -71,7 +71,7 @@ technical discription:In this project sensors are used to collect a variety of i
 		<code class="code_s"> $ ssh root@209.250.245.187</code>
 	-input your password from your debian server.
 
-<code id="title_3">1.4 install zsh</code>
+<code id="title_3">1.4 install zsh (optional)</code>
 
 	-install git. 
 		<code class="code_s">$ sudo apt-get install git </code>
@@ -79,12 +79,11 @@ technical discription:In this project sensors are used to collect a variety of i
 		<code class="code_s">$ sudo apt-get install zsh </code>
 		<code class="code_s">$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  </code>
 	-change zsh theme.
-		<code class="code_s">$ cd ~  </code>
-		<code class="code_s">$ nano .zshrc  </code>
+		<code class="code_s">$ nano ~/.zshrc  </code>
 		change <code class="code">"ZSH_THEME"</code> theme to <code class="code">"alanpeabody"</code> and save
-		<code class="code_s">$ nano .oh-my-zsh/themes/alanpeabody.zsh-theme  </code>
-		replace input of <code class="code">"local user"</code> to <code class="code">" '%{$fg[red]%}%n@%{$fg[white]%}%m%{$reset_color%}' "</code>
-		replace input of <code class="code">"PROMPT"</code> to <code class="code">" "[${user} ${pwd}]$" "</code>
+		<code class="code_s">$ nano ~/.oh-my-zsh/themes/alanpeabody.zsh-theme </code>
+		replace input of <code class="code">local user</code> to <code class="code">'%{$fg[red]%}%n@%{$fg[white]%}%m%{$reset_color%}'</code>
+		replace input of <code class="code">PROMPT</code> to <code class="code">"[${user} ${pwd}]$"</code>
 	-initialize zsh theme.
 		<code class="code_s">$ zsh </code>
 
@@ -142,6 +141,7 @@ technical discription:In this project sensors are used to collect a variety of i
 		<code class="code_s">$ sudo apt install mysql-server </code>
 	-apt will scan all available mysql-server packages and determine that the MySQL provided package is the newest and best candidate. 
 		It will then calculate package dependencies and ask you to approve the installation. Write y then ENTER. The software will install.
+		pick <code class="code">Use string password</code>.
 	-MySQL should be installed and running now.
 		<code class="code_s">$ sudo systemctl status mysql </code>
 		<code class="code_l">
@@ -165,6 +165,7 @@ technical discription:In this project sensors are used to collect a variety of i
 		The Active: active (running) line means MySQL is installed and running. 
 	-Securing MySQL
 		<code class="code_s">$ mysql_secure_installation </code>
+		answer the questions with the following elements <code class="code">y,0,n,y,n,y,y</code>
 	-Testing MySQL
 		mysqladmin is a command line administrative client for MySQL. 
 		You’ll use it to connect to the server and output some version and status information. 
@@ -248,14 +249,12 @@ technical discription:In this project sensors are used to collect a variety of i
 		Save and close the file when you’re done. If you’re using nano, you can do that by pressing CTRL+X, then Y and ENTER.
 		With this VirtualHost configuration, we’re telling Apache to serve your_domain using /var/www/hasdata.xyz as the web root directory. 
 	-You can now use a2ensite to enable the new virtual host:
-		<code class="code_s">$ sudo a2ensite your_domain</code>
+		<code class="code_s">$ sudo a2ensite hasdata.xyz</code>
 	-Finally, reload Apache so these changes take effect:
 		<code class="code_s">$ sudo systemctl reload apache2 </code>
-	-and enable again
-		<code class="code_s"> sudo a2ensite your_domain</code>
 		Your new website is now active, but the web root /var/www/hasdata.xyz is still empty. 
 	-Create an index.php file in that location so that we can test that the virtual host works as expected:
-		<code class="code_s">$ nano /var/www/your_domain/index.php </code>
+		<code class="code_s">$ nano /var/www/hasdata.xyz/index.php </code>
 		<code class="code">
 		&lt;?php
 
